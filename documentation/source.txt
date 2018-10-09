@@ -1,0 +1,7 @@
+Laravel IDE Helper Generator
+https://github.com/barryvdh/laravel-ide-helper
+
+Installing Laravel DataTables
+https://yajrabox.com/docs/laravel-datatables/master/installation
+https://github.com/yajra/laravel-datatables
+

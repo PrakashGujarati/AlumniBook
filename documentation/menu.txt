@@ -1,0 +1,27 @@
+Aluni Book
+
+Alumni 
+-	Faculties
+-	Students
+-	Testimonials
+-	Recruitment Post
+-	Freelancing Work
+
+
+Updates
+-	News
+-	Events
+
+Sharing
+-	Blog
+-	Alumni Speak
+-	Distinguished Alumni
+-	Product Or Offers
+-	Fundraising/Donations
+
+Manage
+-	Slider Images
+-	Photo Gallery
+-	Video Gallery
+
+
