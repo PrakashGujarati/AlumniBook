@@ -9,133 +9,117 @@
     <div class="row">
       <div class="col-sm-12 col-md-12">
         <div class="contact-title">
-          <h3>Register Profile</h3>
+          <h3>Edit Profile</h3>
         </div>
-        <div class="contact-form">
-          <form>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="first_name" class="form-control" placeholder="First Name" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="middled_name" class="form-control" placeholder="Middle Name" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="last_name" class="form-control" placeholder="Last Name" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="email" class="form-control" placeholder="Enter email" type="email">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="mobile" class="form-control" placeholder="Phone Number" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="study_year" class="form-control" placeholder="Enter Study Year" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="obtained_degree" class="form-control" placeholder="Enter Obtained Degree" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="further_study" class="form-control" placeholder="Enter Further Study" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="present_occupation" class="form-control" placeholder="Enter Present Occuption" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="current_position" class="form-control" placeholder="Enter Current Position" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="current_salary" class="form-control" placeholder="Enter Current Salary" type="number">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <textarea class="form-control" name="office_address" placeholder="Enter Office Address"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="birthdate" class="form-control" placeholder="Enter birthdate" type="date">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="gender" class="form-control" placeholder="Enter Gender" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select name="gender" class="form-control">
-                    <option selected disabled>Select Your Marital Status</option>
-                    <option value="Married">Married</option>
-                    <option value="Un Married">Un Married</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <textarea class="form-control" name="residential_address" placeholder="Enter Residential Address"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="facebook_profile" class="form-control" placeholder="Enter Facebook Profile URL" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="twitter_profile" class="form-control" placeholder="Enter Twitter Profile URL" type="text">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <textarea class="form-control" name="success_role_of_college" placeholder="Enter Success Role of College"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <textarea class="form-control" name="college_experience" placeholder="Enter Your Expeience about College"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input name="image" class="form-control" placeholder="Upload Profile Photo" type="file">
-                </div>
-              </div>
+        
+        <form id="myform" data-toggle="validator" role="form">
+          <div class="form-group col-sm-4">
+            <label for="first_name" class="control-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="middle_name" class="control-label">Middle Name</label>
+            <input type="text" class="form-control" id="middle_name" placeholder="Middle Name" required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="last_name" class="control-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" placeholder="Last Name" required>
+          </div>
+
+
+
+          <div class="form-group col-sm-4">
+            <label for="study_year" class="control-label">Study Year</label>
+            <input type="text" class="form-control" id="study_year" placeholder="Study Year" required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="obtained_degree" class="control-label">Obtained Degree</label>
+            <input type="text" class="form-control" id="obtained_degree" placeholder="Obtained Degree" required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="further_study" class="control-label">Further Study</label>
+            <input type="text" class="form-control" id="further_study" placeholder="Further Study" required>
+          </div>
+
+
+          <div class="form-group col-sm-4">
+            <label for="present_occuption" class="control-label">Present Occuption</label>
+            <input type="text" class="form-control" id="present_occuption" placeholder="Present Occuption" required>
+          </div>  
+          <div class="form-group col-sm-4">
+            <label for="current_position" class="control-label">Current Position</label>
+            <input type="text" class="form-control" id="current_position" placeholder="Current Position" required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="current_salary" class="control-label">Current Salary</label>
+            <input type="text" class="form-control" id="current_salary" placeholder="Current Salary" required>
+          </div>
 
 
 
 
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <button type="submit" class="btn">Submit</button>
-                </div>
-              </div>
+          <div class="form-group col-sm-6">
+            <label for="office_address" class="control-label">Office Address</label>
+            <textarea class="form-control" id="office_address" placeholder="Office Address" required></textarea>
+          </div>  
+          <div class="form-group col-sm-6">
+            <label for="resedential_address" class="control-label">Resedential Address</label>
+            <textarea class="form-control" id="resedential_address" placeholder="Resedential Address" required></textarea>
+          </div>
 
-            </div>
-          </form>
-        </div>
+
+
+          <div class="form-group col-sm-4">
+            <label for="birthdate" class="control-label">Birth Date</label>
+            <input type="date" class="form-control" id="birthdate" required>
+          </div>  
+          <div class="form-group col-sm-4">
+            <label for="current_position" class="control-label">Select Gender:</label>
+            <select name="gender" class="form-control" id="gender">
+              <option selected disabled>Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="marital_status" class="control-label">Marital Status:</label>
+            <select name="marital_status" class="form-control" id="marital_status">
+              <option selected disabled>Select Marital Status</option>
+              <option>Married</option>
+              <option>UnMarried</option>
+            </select>
+          </div>
+
+
+          <div class="form-group col-sm-4">
+            <label for="mobile" class="control-label">Mobile</label>
+            <input type="text" class="form-control" id="mobile" placeholder="Mobile No" required>
+          </div>  
+          <div class="form-group col-sm-4">
+            <label for="facebook_profile" class="control-label">Facebook Profile</label>
+            <input type="text" class="form-control" id="facebook_profile" placeholder="Facebook Profile" required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="twitter_profile" class="control-label">Twitter Profile</label>
+            <input type="text" class="form-control" id="twitter_profile" placeholder="Twitter Profile" required>
+          </div>
+
+
+          <div class="form-group col-sm-6">
+            <label for="success_role_of_college" class="control-label">Success Role Of College</label>
+            <textarea class="form-control" id="success_role_of_college" placeholder="Success Role Of College" required></textarea>
+          </div>  
+          <div class="form-group col-sm-6">
+            <label for="college_experience" class="control-label">College Experience</label>
+            <textarea class="form-control" id="college_experience" placeholder="College Experience" required></textarea>
+          </div>
+
+
+          <div class="form-group col-sm-6">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
