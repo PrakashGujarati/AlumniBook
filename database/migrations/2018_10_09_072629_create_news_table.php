@@ -15,7 +15,11 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('admin_id');
+            $table->string('news_title',100);
+            $table->longText('news_details');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

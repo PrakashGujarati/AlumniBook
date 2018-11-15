@@ -15,7 +15,12 @@ class CreateAlumniSpeaksTable extends Migration
     {
         Schema::create('alumni_speaks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('alumni_id');
+            $table->string('topic',100);
+            $table->longText('description');
+            $table->longText('data');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

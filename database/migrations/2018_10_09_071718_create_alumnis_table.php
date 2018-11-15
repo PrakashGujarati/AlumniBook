@@ -25,6 +25,7 @@ class CreateAlumnisTable extends Migration
             $table->string('further_study',100);
             $table->string('present_occupation',100);
             $table->string('current_position',100);
+            $table->string('current_salary',100);
             $table->text('office_address');
             $table->date('birthdate');
             $table->string('gender',6);

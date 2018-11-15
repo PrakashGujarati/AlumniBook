@@ -15,7 +15,14 @@ class CreateFreelancingsTable extends Migration
     {
         Schema::create('freelancings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('alumni_id');
+            $table->integer('job_category_id');
+            $table->string('job_title',100);
+            $table->bigInteger('eligiblility_details');
+            $table->float('work_cost');
+            $table->longText('job_description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
