@@ -15,7 +15,7 @@ class CreateJobCateogriesTable extends Migration
     {
         Schema::create('job_cateogries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('department_id');
+            $table->integer('department_id')->references('id')->on('departments');
             $table->string('cat_name',100);
             $table->timestamps();
             $table->softDeletes();

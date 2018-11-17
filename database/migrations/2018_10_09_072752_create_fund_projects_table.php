@@ -15,7 +15,7 @@ class CreateFundProjectsTable extends Migration
     {
         Schema::create('fund_projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_id');
+            $table->integer('admin_id')->references('id')->on('admins');
             $table->string('project_name',100);
             $table->longText('description');
             $table->bigInteger('target_amount');

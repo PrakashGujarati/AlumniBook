@@ -15,9 +15,9 @@ class CreateEventRegistrationsTable extends Migration
     {
         Schema::create('event_registrations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('event_id');
-            $table->integer('alumni_id');
-            $table->integer('payment_id');
+            $table->integer('event_id')->references('id')->on('events');
+            $table->integer('alumni_id')->references('id')->on('alumnis');
+            $table->integer('payment_id')->references('id')->on('payments');
             $table->timestamps();
             $table->softDeletes();
         });

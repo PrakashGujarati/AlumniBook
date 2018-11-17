@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\client;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Alumni;
 
 class AlumniProfileController extends Controller
 {
@@ -13,7 +15,7 @@ class AlumniProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('frontend.pages.profile');
     }
 
     /**
@@ -34,7 +36,8 @@ class AlumniProfileController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        return Alumni::create($request->all());
+        //return $request;
     }
 
     /**

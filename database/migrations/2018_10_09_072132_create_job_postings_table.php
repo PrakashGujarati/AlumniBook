@@ -15,8 +15,8 @@ class CreateJobPostingsTable extends Migration
     {
         Schema::create('job_postings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('alumni_id');
-            $table->integer('job_category_id');
+            $table->integer('alumni_id')->references('id')->on('alumnis');
+            $table->integer('job_category_id')->references('id')->on('job_categories');
             $table->string('job_title',100);
             $table->bigInteger('eligibility_details');
             $table->bigInteger('salary_detail');

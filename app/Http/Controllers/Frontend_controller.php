@@ -25,6 +25,6 @@ class Frontend_controller extends Controller
     	return view('frontend.pages.upcoming_events');
     }
     public function profile(){
-      return view('frontend.pages.profile');
+      
     }
 }

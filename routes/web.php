@@ -7,13 +7,17 @@ Auth::routes();
 });*/
 
 Route::get('/', 'Frontend_controller@index')->name('Frontend');
-Route::get('/upcoming_events', 'Frontend_controller@upcoming_events')->name('Frontend');
-Route::get('/news_updates', 'Frontend_controller@news')->name('Frontend');
-Route::get('/image_gallery', 'Frontend_controller@gallery')->name('Frontend');
-Route::get('/contact_us', 'Frontend_controller@contact_us')->name('Frontend');
-Route::get('/profile','Frontend_controller@profile')->name('Frontend');
 
-Route::resource('alumnis','AlumniProfileController');
+Route::resource('alumnis','client\AlumniProfileController');
+
+Route::resource('/news_updates', 'client\NewsController');
+
+Route::get('/upcoming_events', 'Frontend_controller@upcoming_events');
+
+Route::get('/image_gallery', 'Frontend_controller@gallery');
+Route::get('/contact_us', 'Frontend_controller@contact_us');
+
+
 
 
 Route::get('/admin', 'HomeController@index')->name('home');

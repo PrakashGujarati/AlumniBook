@@ -15,7 +15,7 @@ class CreateAlumniSpeaksTable extends Migration
     {
         Schema::create('alumni_speaks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('alumni_id');
+            $table->integer('alumni_id')->references('id')->on('alumnis');
             $table->string('topic',100);
             $table->longText('description');
             $table->longText('data');
