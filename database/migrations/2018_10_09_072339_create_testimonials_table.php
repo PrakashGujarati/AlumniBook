@@ -17,7 +17,7 @@ class CreateTestimonialsTable extends Migration
             $table->increments('id');
             $table->integer('alumni_id');
             $table->string('content',200);
-            $table->integer('status',1);
+            $table->integer('status');
             $table->timestamps();
         });
     }

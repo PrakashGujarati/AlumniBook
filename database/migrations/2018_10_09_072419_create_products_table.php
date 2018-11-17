@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('best_price');
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('status',1);
+            $table->integer('status');
         });
     }
 

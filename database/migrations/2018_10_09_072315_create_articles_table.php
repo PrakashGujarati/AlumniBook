@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->longText('title_images');
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('status',1);
+            $table->integer('status');
         });
     }
 
