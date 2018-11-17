@@ -12,7 +12,8 @@
           <h3>Edit Profile</h3>
         </div>
         
-        <form id="myform" data-toggle="validator" role="form">
+        <form id="addform" action='/alumnis' method="POST" data-toggle="validator" role="form">
+          @csrf
           <div class="form-group col-sm-4">
             <label for="first_name" class="control-label">First Name</label>
             <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
@@ -116,7 +117,7 @@
 
 
           <div class="form-group col-sm-6">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="submit" class="btn btn-outline-primary btn-lg" value="Submit">
           </div>
         </form>
 
@@ -126,3 +127,45 @@
 </section>
 
 @endsection
+@section('js_script')
+ <script src="{{asset('dist/app-assets/js/scripts/forms/validation/jquery.validate.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('dist/app-assets/vendors/js/extensions/sweetalert.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+          /* ADD Record using AJAX Requres */
+            var addformValidator = $("#addform").validate({
+                ignore: ":hidden",
+                errorElement: "span",
+                errorClass: "text-danger",
+                validClass: "text-success",
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass(errorClass);
+                    $(element.form).find("span[id=" + element.id + "-error]").addClass(errorClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass(errorClass);
+                    $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
+                },
+                submitHandler: function (form) {
+                    $.ajax({
+                        type: "POST",
+                        url: $(form).attr('action'),
+                        method: $(form).attr('method'),
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            //$('#addmodel').modal('hide');
+                            console.log(data);
+                            swal("Good job!", "Your Record Inserted Successfully", "success");
+                            $(form).trigger('reset');
+                            //mytable.draw();
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var response = JSON.parse(XMLHttpRequest.responseText);
+                            addformValidator.showErrors(response.errors);
+                        }
+                    });
+                    return false; // required to block normal submit since you used ajax
+                }
+            });
+</script>
+
+ @endsection

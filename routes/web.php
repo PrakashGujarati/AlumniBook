@@ -13,6 +13,8 @@ Route::get('/image_gallery', 'Frontend_controller@gallery')->name('Frontend');
 Route::get('/contact_us', 'Frontend_controller@contact_us')->name('Frontend');
 Route::get('/profile','Frontend_controller@profile')->name('Frontend');
 
+Route::resource('alumnis','AlumniProfileController');
+
 
 Route::get('/admin', 'HomeController@index')->name('home');
 

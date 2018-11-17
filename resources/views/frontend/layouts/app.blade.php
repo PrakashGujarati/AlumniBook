@@ -28,5 +28,8 @@
 
     
     @include('frontend.includes.footer')    
+
+    @yield('js_script')
+
 </body>
 </html>
