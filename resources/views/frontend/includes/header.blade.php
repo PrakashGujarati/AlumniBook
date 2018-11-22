@@ -46,25 +46,18 @@
               <div class="popup register-popup">
                 <div class="popup-bg"> <i class="fa fa-times" aria-hidden="true"></i>
                   <h2> Register</h2>
-                  <form action="#">
-                    <div class="form-group"> <i class="fa fa-user" aria-hidden="true"></i>
-                      <input type="text" name="user-name" placeholder="Username">
-                    </div>
+                  <form action="#" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group"> <i class="fa fa-envelope" aria-hidden="true"></i>
-                      <input type="email" name="user-email" placeholder="Email">
+                      <input type="email" name="email" placeholder="Email">
                     </div>
-                    <div class="form-group"> <span>+1</span>
-                      <input type="text" name="phone" placeholder="Phone">
+                    <div class="form-group"> <span>+91</span>
+                      <input type="text" name="mobile" placeholder="Phone">
                     </div>
                     <div class="form-group"> <i class="fa fa-key" aria-hidden="true"></i>
                       <input type="password" name="user-password" placeholder="Password">
                     </div>
-                    <div class="forget-password">
-                      <div class="pull-left">
-                        <input type="checkbox" id="test2" />
-                        <label for="test2">Terms and Conditions apply</label>
-                      </div>
-                    </div>
+                    
                     <button type="submit" class="btn">Register</button>
                   </form>
                 </div>

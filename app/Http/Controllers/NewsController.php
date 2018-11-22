@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use DataTables;
+use Auth;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -14,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.News.view');
     }
 
     /**
@@ -35,7 +37,9 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->merge(['admin_id'=>1]);
+        News::create($request->all());
+        return response("success");
     }
 
     /**
@@ -67,9 +71,10 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, $id)
     {
-        //
+        News::findOrFail($id)->update($request->all());
+        return response('success');   
     }
 
     /**
@@ -78,8 +83,23 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy($id)
     {
-        //
+        News::destroy($id);
+        return response('Success');
+    }
+
+    public function getDataTable()
+    {
+        $newses = News::all();
+        return DataTables::of($newses)
+            ->addColumn('edit',function ($news){
+                return '<button type="button" class="edit btn btn-sm btn-primary" data-news-title="'.$news->news_title.'" data-news-details="'.$news->news_details.'" data-id="'.$news->id.'">Edit</button>';
+            })
+            ->addColumn('delete',function ($news){
+                return '<button type="button" class="delete btn btn-sm btn-danger" data-delete-id="'.$news->id.'" data-token="'.csrf_token().'" >Delete</button>';
+            })
+            ->rawColumns(['edit','delete'])
+            ->make(true);
     }
 }

@@ -7,13 +7,9 @@ Auth::routes();
 });*/
 
 Route::get('/', 'Frontend_controller@index')->name('Frontend');
-
 Route::resource('alumnis','client\AlumniProfileController');
-
 Route::resource('/news_updates', 'client\NewsController');
-
 Route::get('/upcoming_events', 'Frontend_controller@upcoming_events');
-
 Route::get('/image_gallery', 'Frontend_controller@gallery');
 Route::get('/contact_us', 'Frontend_controller@contact_us');
 
@@ -21,9 +17,7 @@ Route::get('/contact_us', 'Frontend_controller@contact_us');
 
 
 Route::get('/admin', 'HomeController@index')->name('home');
-
 Route::get('logout','Auth\LoginController@logout');
-
 // Admin Auth Routes
 Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -33,17 +27,18 @@ Route::post('admin/password/email', 'Auth\AdminForgotPasswordController@sendRese
 Route::get('admin/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin/password/reset', 'Auth\AdminResetPasswordController@reset');
 Route::get('admin/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
-
 Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 
 /* For Admin Alumni */
 Route::get('faculties/getDataTable','HallController@getDataTable');
 Route::resource('faculties', 'HallController');
 
+/* For Admin Alumni */
+Route::get('news/getDataTable','NewsController@getDataTable');
+Route::resource('news', 'NewsController');
 
 Route::group(['middleware'=>'auth:admin'], function() {
     // Admin Alumni
-
 
 
 });

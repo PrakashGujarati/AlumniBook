@@ -5,8 +5,7 @@
 @section('content')
 
 <section class="content-wrapper contactus">
-  <form id="addform" action='/alumnis' method="POST" data-toggle="validator" role="form">
-  @csrf
+  
     <div class="container">
       <div class="row">
         <div class="panel panel-primary">
@@ -15,18 +14,28 @@
           </div>
           <div class="panel-body">
             <div class="row">
+              <form id="addform" action='/alumnis' method="POST" data-toggle="validator" role="form" enctype="multipart/form-data">
+              @csrf
 
-              <input type="hidden" name="email" value="test@gmail.com"><!-- Set this Value from Session -->
-
-
+              
               <div class="col-lg-12">
                 <div class="col-lg-4">
                   <div class="panel-body">
                     <label>Profile Photo: </label>
                     <img src="{{ asset('1.jpg') }}" style="border-radius: 50%;" width="50%">
-                    <input type="hidden" style="border-radius: 180px;" class="form-control" name="image" value="1.jpg">
+                    <input type="file" style="border-radius: 180px;" class="form-control" name="image" value="">
                   </div>
                 </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="col-lg-4">
+                  <div class="panel-body">
+                    <label>Email: </label>
+                    <input type="text" class="form-control" name="email" value="">
+                  </div>
+                </div>
+                
               </div>
 
 
@@ -204,14 +213,16 @@
 
               </div>
 
+            </form>
             </div>
           </div>
         </div>
       </div>
-    </form>
   </section>
 
   @endsection
+
+
   @section('js_script')
   <script src="{{asset('dist/app-assets/js/scripts/forms/validation/jquery.validate.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('dist/app-assets/vendors/js/extensions/sweetalert.min.js')}}" type="text/javascript"></script>
@@ -224,41 +235,41 @@
       window.location.href = '/';
     });
 
-    /* ADD Record using AJAX Requres */
-    var addformValidator = $("#addform").validate({
-      ignore: ":hidden",
-      errorElement: "span",
-      errorClass: "text-danger",
-      validClass: "text-success",
-      highlight: function (element, errorClass, validClass) {
-        $(element).addClass(errorClass);
-        $(element.form).find("span[id=" + element.id + "-error]").addClass(errorClass);
-      },
-      unhighlight: function (element, errorClass, validClass) {
-        $(element).removeClass(errorClass);
-        $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
-      },
-      submitHandler: function (form) {
-        $.ajax({
-          type: "POST",
-          url: $(form).attr('action'),
-          method: $(form).attr('method'),
-          data: $(form).serialize(),
-          success: function (data) {
-                            //$('#addmodel').modal('hide');
-                            console.log(data);
-                            swal("Good job!", "Your Record Inserted Successfully", "success");
-                            $(form).trigger('reset');
-                            //mytable.draw();
-                          },
-                          error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var response = JSON.parse(XMLHttpRequest.responseText);
-                            addformValidator.showErrors(response.errors);
-                          }
-                        });
-                    return false; // required to block normal submit since you used ajax
-                  }
-                });
-              </script>
 
-              @endsection
+
+    
+
+    var addformValidator = $("#addform").validate({
+        ignore: ":hidden",
+        errorElement: "span",
+        errorClass: "text-danger",
+        validClass: "text-success",
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass(errorClass);
+            $(element.form).find("span[id=" + element.id + "-error]").addClass(errorClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass(errorClass);
+            $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
+        },
+        submitHandler: function (form) {
+            $.ajax({
+                type: "POST",
+                url: $(form).attr('action'),
+                method: $(form).attr('method'),
+                data: $(form).serialize(),
+                success: function (data) {
+                    swal("Good job!", "Your Record Inserted Successfully", "success");
+                    $(form).trigger('reset');
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var response = JSON.parse(XMLHttpRequest.responseText);
+                    addformValidator.showErrors(response.errors);
+                }
+            });
+            return false; // required to block normal submit since you used ajax
+        }
+    });
+  </script>
+
+@endsection
