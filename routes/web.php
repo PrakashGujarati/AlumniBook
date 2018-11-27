@@ -2,9 +2,6 @@
 
 Auth::routes();
 
-/*Route::get('/', function () {
-    return view('frontend.pages.index');
-});*/
 
 Route::get('/', 'Frontend_controller@index')->name('Frontend');
 Route::resource('alumnis','client\AlumniProfileController');
@@ -20,6 +17,11 @@ Route::resource('/register','AlumniController');
 
 
 Route::get('/admin', 'HomeController@index')->name('home');
+Route::resource('/students', 'AlumniController');
+
+
+
+
 Route::get('logout','Auth\LoginController@logout');
 // Admin Auth Routes
 Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

@@ -11,7 +11,6 @@
 
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="la la-building-o"></i><span>Alumni</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/faculties" >Faculties</a></li>
                     <li><a class="dropdown-item" href="/students" >Students</a></li>
                     <li><a class="dropdown-item" href="/testimonials" >Testimonials</a></li>
                     <li><a class="dropdown-item" href="/recruitments" >Recruitment Post</a></li>
