@@ -15,7 +15,7 @@ class AlumniProfileController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.profile');
+        //return view('frontend.pages.profile');
     }
 
     /**

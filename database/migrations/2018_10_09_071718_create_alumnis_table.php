@@ -36,6 +36,7 @@ class CreateAlumnisTable extends Migration
             $table->string('twitter_profile',190)->unique()->nullable();
             $table->text('success_role_of_college')->nullable();
             $table->text('college_experience')->nullable();
+            $table->tinyInteger('status')->default('1');
             $table->text('image')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -46,7 +46,7 @@
               <div class="popup register-popup">
                 <div class="popup-bg"> <i class="fa fa-times" aria-hidden="true"></i>
                   <h2> Register</h2>
-                  <form action="#" method="POST" enctype="multipart/form-data">
+                  <form action="/register" method="POST" id="register_form" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group"> <i class="fa fa-envelope" aria-hidden="true"></i>
                       <input type="email" name="email" placeholder="Email">
@@ -55,7 +55,7 @@
                       <input type="text" name="mobile" placeholder="Phone">
                     </div>
                     <div class="form-group"> <i class="fa fa-key" aria-hidden="true"></i>
-                      <input type="password" name="user-password" placeholder="Password">
+                      <input type="password" name="password" placeholder="Password">
                     </div>
                     
                     <button type="submit" class="btn">Register</button>
@@ -115,3 +115,58 @@
     </div>
   </div>
 </header>
+
+
+
+@section('js_script')
+
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="{{asset('')}}dist/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+    <script src="{{asset('dist/app-assets/js/scripts/ui/breadcrumbs-with-stats.js')}}" type="text/javascript" ></script>
+    <script src="{{asset('dist/app-assets/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
+    <script src="{{asset('dist/app-assets/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('dist/app-assets/js/scripts/forms/validation/jquery.validate.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('dist/app-assets/vendors/js/extensions/sweetalert.min.js')}}" type="text/javascript"></script>
+
+    <!-- END PAGE LEVEL JS-->
+
+    <script>
+
+      /* ADD Record using AJAX Requres */
+      var addformValidator = $("#register_form").validate({
+          ignore: ":hidden",
+          errorElement: "span",
+          errorClass: "text-danger",
+          validClass: "text-success",
+          highlight: function (element, errorClass, validClass) {
+              $(element).addClass(errorClass);
+              $(element.form).find("span[id=" + element.id + "-error]").addClass(errorClass);
+          },
+          unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass(errorClass);
+              $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
+          },
+          submitHandler: function (form) {
+              $.ajax({
+                  type: "POST",
+                  url: $(form).attr('action'),
+                  method: $(form).attr('method'),
+                  data: $(form).serialize(),
+                  success: function (data) {
+                      $('.register-popup').css('display','none');
+                      swal("Good job!", "Your Profile Registered Successfully", "success");
+                      $(form).trigger('reset');
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                      var response = JSON.parse(XMLHttpRequest.responseText);
+                      addformValidator.showErrors(response.errors);
+                  }
+              });
+              return false; // required to block normal submit since you used ajax
+          }
+      });
+
+        
+    </script>
+
+@stop

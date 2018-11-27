@@ -14,6 +14,9 @@ Route::get('/image_gallery', 'Frontend_controller@gallery');
 Route::get('/contact_us', 'Frontend_controller@contact_us');
 
 
+Route::resource('/register','AlumniController');
+
+
 
 
 Route::get('/admin', 'HomeController@index')->name('home');

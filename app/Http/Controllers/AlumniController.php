@@ -35,7 +35,8 @@ class AlumniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Alumni::create($request->all());
+        return response("success");
     }
 
     /**
