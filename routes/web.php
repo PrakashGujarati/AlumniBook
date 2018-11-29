@@ -17,7 +17,10 @@ Route::resource('/register','AlumniController');
 
 
 Route::get('/admin', 'HomeController@index')->name('home');
-Route::resource('/students', 'AlumniController');
+
+
+Route::get('students/getDataTable','AlumniController@getDataTable');
+Route::resource('students', 'AlumniController');
 
 
 

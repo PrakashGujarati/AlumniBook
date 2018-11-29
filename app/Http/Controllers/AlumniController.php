@@ -3,84 +3,61 @@
 namespace App\Http\Controllers;
 
 use App\Alumni;
+use DataTables;
+use Auth;
 use Illuminate\Http\Request;
 
 class AlumniController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('layouts.admin.students');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Alumni::create($request->all());
         return response("success");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Alumni  $alumni
-     * @return \Illuminate\Http\Response
-     */
     public function show(Alumni $alumni)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Alumni  $alumni
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Alumni $alumni)
     {
-        //
+        return $alumni->all();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Alumni  $alumni
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Alumni $alumni)
     {
-        //
+        return $request->all();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Alumni  $alumni
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Alumni $alumni)
     {
         //
     }
+
+    public function getDataTable()
+    {
+        $alumni = Alumni::all();
+        $cnt = $alumni->count();
+        return DataTables::of($alumni)
+            ->addColumn('status',function ($alumni){
+                return '<button type="button" class="approve btn btn-round btn-sm btn-success" data-id="'.$alumni->id.'"><i class="fa fa-check" aria-hidden="true"></i>
+                    </button>&nbsp;&nbsp;&nbsp;<button type="button" class="decline btn btn-round btn-sm btn-danger" data-delete-id="'.$alumni->id.'"><i class="fa fa-window-close" aria-hidden="true"></i></button>';
+            })
+            ->setTotalRecords($cnt)
+            ->rawColumns(['status'])
+            ->make(true);
+    }
+
 }
