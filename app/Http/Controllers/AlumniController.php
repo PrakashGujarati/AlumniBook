@@ -33,27 +33,48 @@ class AlumniController extends Controller
 
     public function edit(Alumni $alumni)
     {
-        return $alumni->all();
+
     }
 
-    public function update(Request $request, Alumni $alumni)
+    public function update(Request $request, $id)
     {
-        return $request->all();
+        $alumni = Alumni::find($id);
+        if($alumni){
+            $alumni->status = '1';
+            $alumni->save();
+            return 'success';
+        }
+        else{
+            return 'Not Found Exception';
+        }
+
+
+        /*Alumni::findOrFail($id)->update(['status' => '1']);
+        return response('success');*/
     }
 
-    public function destroy(Alumni $alumni)
+    public function destroy($id)
     {
-        //
+        Alumni::destroy($id);
+        return response('Success');
+        //return $alumni->all();
     }
 
     public function getDataTable()
     {
         $alumni = Alumni::all();
         $cnt = $alumni->count();
+
         return DataTables::of($alumni)
             ->addColumn('status',function ($alumni){
-                return '<button type="button" class="approve btn btn-round btn-sm btn-success" data-id="'.$alumni->id.'"><i class="fa fa-check" aria-hidden="true"></i>
-                    </button>&nbsp;&nbsp;&nbsp;<button type="button" class="decline btn btn-round btn-sm btn-danger" data-delete-id="'.$alumni->id.'"><i class="fa fa-window-close" aria-hidden="true"></i></button>';
+                if($alumni->status == '0'){
+                    return '<button type="button" class="approve btn btn-round btn-sm btn-success" data-id="'.$alumni->id.'"><i class="fa fa-check" aria-hidden="true"></i>
+                    </button>&nbsp;&nbsp;&nbsp;<button type="button" class="decline btn btn-round btn-sm btn-danger" data-delete-id="'.$alumni->id.'"><i class="fa fa-window-close" aria-hidden="true"></i></button>';    
+                }
+                else{
+                    return '<button type="button" class="decline btn btn-round btn-sm btn-danger" data-id="'.$alumni->id.'"><i class="fa fa-window-close" aria-hidden="true"></i></button>';
+                }
+                
             })
             ->setTotalRecords($cnt)
             ->rawColumns(['status'])

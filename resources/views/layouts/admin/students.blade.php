@@ -158,16 +158,42 @@
         	$.ajax({
         		url: urldata,
         		method: 'POST',
-        		data: {
-        			'id' : edit_id, 
+        		data: { 
         			'_method': "PATCH",
         			'_token' : '{{csrf_token()}}',
         		},
         		success:function(result){
-        			alert(result);
+        			swal("Good job!", "User Status Change Successfully", "success");
+                    mytable.draw();
         		}
         	});
         });
+
+
+		$(document).on('click','.decline',function(){
+        //$('.decline').click(function(){
+            var id = $(this).data('id');
+            var token = $(this).data('token');
+
+
+            $.ajax({
+                url: '/students/'+id,
+                type:'POST',
+                data:{
+                    "id":id,
+                    "_method":"DELETE",
+                    '_token' : '{{csrf_token()}}',
+                },
+                success:function(response){
+                	alert(response);
+                    //location.reload();
+                },
+                error:function(xhr,status){
+                    console.log(xhr.responseText);
+                }
+            });
+
+         });
 
         $(document).ready(function (e) {
 
@@ -185,29 +211,7 @@
                 ]
             });
 
-            $('.delete').click(function(){
-                var id = $(this).data('id');
-                var token = $(this).data('token');
-
-
-                $.ajax({
-                    url: '/students/'+id,
-                    type:'POST',
-                    data:{
-                        "id":id,
-                        "_method":"DELETE",
-                        "_token":token,
-                    },
-                    success:function(response)
-                    {
-                        location.reload();
-                    },
-                    error:function(xhr,status){
-                        console.log(xhr.responseText);
-                    }
-                });
-
-             });
+            
 
             /* ADD Record using AJAX Requres */
             var addformValidator = $("#addform").validate({
