@@ -37,9 +37,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['admin_id'=>1]);
+        return $request->all();
+        /*$request->merge(['admin_id'=>1]);
         News::create($request->all());
-        return response("success");
+        return response("success");*/
     }
 
     /**

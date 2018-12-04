@@ -18,6 +18,7 @@ class CreateNewsTable extends Migration
             $table->integer('admin_id')->references('id')->on('admins');
             $table->string('news_title',100);
             $table->longText('news_details');
+            $table->longText('news_image');
             $table->timestamps();
             $table->softDeletes();
         });

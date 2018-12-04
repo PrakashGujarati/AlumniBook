@@ -56,12 +56,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel35"> Add <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Movie</a></h3>
+                    <h3 class="modal-title" id="myModalLabel35"> Add <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">News</a></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/news" method="post" id="addform">
+                <form action="/news" method="post" id="addform" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <fieldset class="form-group floating-label-form-group">
@@ -73,6 +73,10 @@
                             <label for="description">Details</label>
                             <textarea class="form-control" required="true" id="news_details" name="news_details"
                                       placeholder="Enter News Details"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="description">Upload Image</label>
+                            <input type="file" class="form-control" required="true" id="news_image" name="news_image">
                         </fieldset>                        
                     </div>
                     <div class="modal-footer">
@@ -230,16 +234,24 @@
                     $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
                 },
                 submitHandler: function (form) {
+                    var data2 = new FormData(form);
+                    var src = $("#news_image").attr('src');
+                    var image = new Image(src);
+                    data2.append('news_image',image);
                     $.ajax({
                         type: "POST",
                         url: $(form).attr('action'),
                         method: $(form).attr('method'),
-                        data: $(form).serialize(),
+                        //data: $(form).serialize(),
+                        data: data2,
+                        processData: false,
+                        contentType: false,
                         success: function (data) {
-                            $('#addmodel').modal('hide');
+                            alert(data);
+                            /*$('#addmodel').modal('hide');
                             swal("Good job!", "Your Record Inserted Successfully", "success");
                             $(form).trigger('reset');
-                            mytable.draw();
+                            mytable.draw();*/
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             var response = JSON.parse(XMLHttpRequest.responseText);
