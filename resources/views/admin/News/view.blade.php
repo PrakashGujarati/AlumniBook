@@ -37,6 +37,7 @@
                                     <th>Admin</th>
                                     <th>Title</th>
                                     <th>Details</th>
+                                    <th>Image</th>
                                     <th width="50px;">Edit</th>
                                     <th width="50px;">Delete</th>
                                 </tr>
@@ -214,6 +215,7 @@
                     {data: "admin_id"},
                     {data: "news_title"},
                     {data: "news_details"},
+                    {data: "image"},
                     {data: "edit"},
                     {data: "delete"}
                 ]

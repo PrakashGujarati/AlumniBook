@@ -6,6 +6,8 @@ use App\News;
 use DataTables;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use \Input as Input;
 
 class NewsController extends Controller
 {
@@ -37,10 +39,15 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
-        /*$request->merge(['admin_id'=>1]);
+        $image_name = $request->file('news_image');
+        $file_name = $image_name->getClientOriginalName();
+
+        $image_name->move('news_images', $file_name);
+
+        
+        $request->merge(['admin_id'=>1,'news_image'=>$file_name]);
         News::create($request->all());
-        return response("success");*/
+        return response("success");
     }
 
     /**
