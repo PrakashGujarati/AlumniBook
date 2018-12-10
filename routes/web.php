@@ -45,6 +45,10 @@ Route::resource('faculties', 'HallController');
 Route::get('news/getDataTable','NewsController@getDataTable');
 Route::resource('news', 'NewsController');
 
+
+Route::get('event/getDataTable','EventController@getDataTable');
+Route::resource('event', 'EventController');
+
 Route::group(['middleware'=>'auth:admin'], function() {
     // Admin Alumni
 

@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->string('event_name',100);
             $table->longText('event_details');
             $table->integer('event_fees');
+            $table->string('event_images');
             $table->timestamps();
             $table->softDeletes();
         });

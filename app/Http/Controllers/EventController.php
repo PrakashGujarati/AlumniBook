@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use DataTables;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use \Input as Input;
 
 class EventController extends Controller
 {
@@ -14,7 +18,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.Event.view');
     }
 
     /**
@@ -35,7 +39,14 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image_name = $request->file('event_images');
+        $file_name = $image_name->getClientOriginalName();
+        $request->merge(['admin_id'=>1,'event_images'=>$file_name]);
+
+        $image_name->move(public_path().'/event_images/', $file_name);
+        
+        Event::create($request->all());
+        return response("success");
     }
 
     /**
@@ -67,9 +78,10 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        Event::findOrFail($id)->update($request->all());
+        return response('success');   
     }
 
     /**
@@ -78,8 +90,24 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        Event::findOrFail($id)->update($request->all());
+        return response('success');   
+    }
+
+
+    public function getDataTable()
+    {
+        $event = Event::all();
+        return DataTables::of($event)
+            ->addColumn('edit',function ($news){
+                return '<button type="button" class="edit btn btn-sm btn-primary" data-event-title="'.$event->event_name.'" data-event-details="'.$event->event_details.'" data-id="'.$event->id.'">Edit</button>';
+            })
+            ->addColumn('delete',function ($news){
+                return '<button type="button" class="delete btn btn-sm btn-danger" data-delete-id="'.$event->id.'" data-token="'.csrf_token().'" >Delete</button>';
+            })
+            ->rawColumns(['edit','delete'])
+            ->make(true);
     }
 }

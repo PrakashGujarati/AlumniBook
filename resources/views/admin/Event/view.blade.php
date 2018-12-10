@@ -1,6 +1,6 @@
 @extends('layouts.admin_template')
 
-@section('title',"View News")
+@section('title',"View Events")
 
 @section('head')
     <!-- BEGIN Page Level CSS-->
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">News</h4>
+                        <h4 class="card-title">Events</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
                             <button type="button" class="btn btn-outline-warning block btn-lg" data-toggle="modal"
@@ -35,11 +35,12 @@
                                 <thead>
                                 <tr>
                                     <th>Admin</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
                                     <th>Details</th>
+                                    <th>Fees</th>
                                     <th>Image</th>
-                                    <th width="50px;">Edit</th>
-                                    <th width="50px;">Delete</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -57,27 +58,29 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel35"> Add <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">News</a></h3>
+                    <h3 class="modal-title" id="myModalLabel35"> Add <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Events</a></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/news" method="post" id="addform" enctype="multipart/form-data">
+                <form action="/event" method="post" id="addform" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <fieldset class="form-group floating-label-form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" required="true" id="news_title" name="news_title"
-                                   placeholder="Enter News Title">
+                            <label for="title">Event Name</label>
+                            <input type="text" class="form-control" required="true" id="event_name" name="event_name" placeholder="Enter Event Name">
                         </fieldset>
                         <fieldset class="form-group floating-label-form-group">
-                            <label for="description">Details</label>
-                            <textarea class="form-control" required="true" id="news_details" name="news_details"
-                                      placeholder="Enter News Details"></textarea>
+                            <label for="description">Event Details</label>
+                            <textarea class="form-control" required="true" id="event_details" name="event_details" placeholder="Enter Event Details"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="title">Event Fees</label>
+                            <input type="text" class="form-control" required="true" id="event_fees" name="event_fees" placeholder="Enter Event Fees">
                         </fieldset>
                         <fieldset class="form-group floating-label-form-group">
                             <label for="description">Upload Image</label>
-                            <input type="file" class="form-control" required="true" id="news_image" name="news_image">
+                            <input type="file" class="form-control" required="true" id="event_images" name="event_images">
                         </fieldset>                        
                     </div>
                     <div class="modal-footer">
@@ -170,7 +173,7 @@
                     if (isConfirm) {
                         $.ajax(
                             {
-                                url: "/news/" + id,
+                                url: "/event/" + id,
                                 type: 'POST',
                                 data: {
                                     "id": id,
@@ -196,12 +199,12 @@
         $(document).on('click', '.edit', function () {
 
             var id = $(this).data("id");
-            var news_title = $(this).data("news-title");
-            var news_details = $(this).data("news-details");
+            var event_title = $(this).data("event-title");
+            var event_details = $(this).data("event-details");
 
-            $('#editform #news_title').val(news_title);
-            $('#editform #news_details').val(news_details);
-            $('#editform').attr('action', '/news/' + id);
+            $('#editform #event_title').val(event_title);
+            $('#editform #event_details').val(event_details);
+            $('#editform').attr('action', '/event/' + id);
             $('#editmodel').modal('show');
         });
 
@@ -210,12 +213,13 @@
             mytable = $('.dynamic-table').DataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ url('news/getDataTable') }}",
+                "ajax": "{{ url('event/getDataTable') }}",
                 columns: [
                     {data: "admin_id"},
-                    {data: "news_title"},
-                    {data: "news_details"},
-                    {data: "image"},
+                    {data: "event_title"},
+                    {data: "event_details"},
+                    {data: "event_fees"},
+                    {data: "event_images"},
                     {data: "edit"},
                     {data: "delete"}
                 ]
@@ -237,9 +241,9 @@
                 },
                 submitHandler: function (form) {
                     var data2 = new FormData(form);
-                    var src = $("#news_image").attr('src');
+                    var src = $("#event_images").attr('src');                    
                     var image = new Image(src);
-                    data2.append('news_image',image);
+                    data2.append('event_images',image);
                     $.ajax({
                         type: "POST",
                         url: $(form).attr('action'),

@@ -42,10 +42,11 @@ class NewsController extends Controller
         $image_name = $request->file('news_image');
         $file_name = $image_name->getClientOriginalName();
 
-        $image_name->move('news_images', $file_name);
+        $request->merge(['admin_id'=>1,'news_image'=>$file_name]);
+
+        $image_name->move(public_path().'/news_images/', $file_name);
 
         
-        $request->merge(['admin_id'=>1,'news_image'=>$file_name]);
         News::create($request->all());
         return response("success");
     }

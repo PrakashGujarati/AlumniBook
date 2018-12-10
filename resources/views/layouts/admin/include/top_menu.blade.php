@@ -20,7 +20,7 @@
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="la la-television"></i><span>College Updates</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/news" >News</a></li>
-                    <li><a class="dropdown-item" href="/events" >Events</a></li>
+                    <li><a class="dropdown-item" href="/event" >Events</a></li>
                 </ul>
             </li>
             <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="la la-inr"></i><span>Student Sharing</span></a>
