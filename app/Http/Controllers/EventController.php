@@ -101,10 +101,10 @@ class EventController extends Controller
     {
         $event = Event::all();
         return DataTables::of($event)
-            ->addColumn('edit',function ($news){
-                return '<button type="button" class="edit btn btn-sm btn-primary" data-event-title="'.$event->event_name.'" data-event-details="'.$event->event_details.'" data-id="'.$event->id.'">Edit</button>';
+            ->addColumn('edit',function ($event){
+                return '<button type="button" class="edit btn btn-sm btn-primary" data-event-title="'.$event->event_name.'" data-event-images="'.$event->event_images.'"  data-event-details="'.$event->event_details.'" data-id="'.$event->id.'">Edit</button>';
             })
-            ->addColumn('delete',function ($news){
+            ->addColumn('delete',function ($event){
                 return '<button type="button" class="delete btn btn-sm btn-danger" data-delete-id="'.$event->id.'" data-token="'.csrf_token().'" >Delete</button>';
             })
             ->rawColumns(['edit','delete'])

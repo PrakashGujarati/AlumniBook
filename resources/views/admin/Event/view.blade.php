@@ -216,7 +216,7 @@
                 "ajax": "{{ url('event/getDataTable') }}",
                 columns: [
                     {data: "admin_id"},
-                    {data: "event_title"},
+                    {data: "event_name"},
                     {data: "event_details"},
                     {data: "event_fees"},
                     {data: "event_images"},

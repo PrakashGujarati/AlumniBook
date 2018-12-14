@@ -42,7 +42,8 @@ class NewsController extends Controller
         $image_name = $request->file('news_image');
         $file_name = $image_name->getClientOriginalName();
 
-        $request->merge(['admin_id'=>1,'news_image'=>$file_name]);
+        //$request->merge(['admin_id'=>1,'news_image'=>$file_name]);
+        $request->merge(['admin_id'=>1]);
 
         $image_name->move(public_path().'/news_images/', $file_name);
 
@@ -82,8 +83,16 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $image_name = $request->file('news_image');
+        $file_name = $image_name->getClientOriginalName();
+
+        //$request->merge(['admin_id'=>1,'news_image'=>$file_name]);
+        $request->merge(['admin_id'=>1]);
+
+        $image_name->move(public_path().'/news_images/', $file_name);
+
         News::findOrFail($id)->update($request->all());
-        return response('success');   
+        return response("success");   
     }
 
     /**
@@ -103,7 +112,7 @@ class NewsController extends Controller
         $newses = News::all();
         return DataTables::of($newses)
             ->addColumn('edit',function ($news){
-                return '<button type="button" class="edit btn btn-sm btn-primary" data-news-title="'.$news->news_title.'" data-news-details="'.$news->news_details.'" data-id="'.$news->id.'">Edit</button>';
+                return '<button type="button" class="edit btn btn-sm btn-primary" data-news-title="'.$news->news_title.'" data-news-details="'.$news->news_details.'" data-id="'.$news->id.'" data-news-image="'.$news->news_image.'">Edit</button>';
             })
             ->addColumn('delete',function ($news){
                 return '<button type="button" class="delete btn btn-sm btn-danger" data-delete-id="'.$news->id.'" data-token="'.csrf_token().'" >Delete</button>';

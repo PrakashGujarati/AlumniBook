@@ -94,12 +94,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel35"> Edit <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Movie</a></h3>
+                    <h3 class="modal-title" id="myModalLabel35"> Edit <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">News</a></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="" id="editform">
+                <form method="post" action="" id="editform" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="modal-body">
@@ -111,6 +111,10 @@
                         <fieldset class="form-group floating-label-form-group">
                             <label for="description">Details</label>
                             <textarea class="form-control" required="true" id="news_details" name="news_details" placeholder="Enter News Details"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="description">Upload Image</label>
+                            <input type="file" class="form-control" required="true" id="news_image" name="news_image">
                         </fieldset>
                     </div>
                     <div class="modal-footer">
@@ -198,9 +202,13 @@
             var id = $(this).data("id");
             var news_title = $(this).data("news-title");
             var news_details = $(this).data("news-details");
+            var src = $(this).data('news-image');
+
 
             $('#editform #news_title').val(news_title);
             $('#editform #news_details').val(news_details);
+            //$('#editform #news_image').val(src);
+            $('#editform #news_image').attr('src',src);
             $('#editform').attr('action', '/news/' + id);
             $('#editmodel').modal('show');
         });
@@ -215,7 +223,7 @@
                     {data: "admin_id"},
                     {data: "news_title"},
                     {data: "news_details"},
-                    {data: "image"},
+                    {data: "news_image"},
                     {data: "edit"},
                     {data: "delete"}
                 ]
@@ -278,11 +286,16 @@
                     $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
                 },
                 submitHandler: function (form) {
+                    var data3 = new FormData(form);
+                    var src = $("#editform #news_image").attr('src');
+                    var image = new Image(src);
+                    data3.append('news_image',image);
                     $.ajax({
                         type: "POST",
                         url: $(form).attr('action'),
                         method: $(form).attr('method'),
-                        data: $(form).serialize(),
+                        //data: $(form).serialize(),
+                        data: data2,
                         success: function (data) {
                             $('#editmodel').modal('hide');
                             swal("Good job!", "Your Record Updated Successfully", "success");
