@@ -6,7 +6,7 @@ Auth::routes();
 Route::get('/', 'Frontend_controller@index')->name('Frontend');
 Route::resource('alumnis','client\AlumniProfileController');
 Route::resource('/news_updates', 'client\NewsController');
-Route::get('/upcoming_events', 'Frontend_controller@upcoming_events');
+//Route::get('/upcoming_events', 'Frontend_controller@upcoming_events');
 Route::get('/image_gallery', 'Frontend_controller@gallery');
 Route::get('/contact_us', 'Frontend_controller@contact_us');
 
@@ -46,8 +46,18 @@ Route::get('news/getDataTable','NewsController@getDataTable');
 Route::resource('news', 'NewsController');
 
 
+Route::get('event/frontend','EventController@frontend_view');
 Route::get('event/getDataTable','EventController@getDataTable');
 Route::resource('event', 'EventController');
+
+
+Route::get('testimonials/getDataTable','TestimonialController@getDataTable');
+Route::resource('testimonials', 'TestimonialController');
+
+
+/*Route::get('photos/getDataTable','MediaController@getDataTable');
+Route::resource('photos', 'MediaController');*/
+
 
 Route::group(['middleware'=>'auth:admin'], function() {
     // Admin Alumni

@@ -19,8 +19,8 @@ class CreateMediaTable extends Migration
             $table->unsignedInteger('department_id')->references('id')->on('departments');
             $table->string('media_type');
             $table->string('title',200);
-            $table->text('images');
-            $table->text('videos');
+            $table->text('images')->nullable();
+            $table->text('videos')->nullable();
             $table->tinyInteger('status');
         });
     }

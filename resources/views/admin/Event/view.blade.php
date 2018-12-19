@@ -97,7 +97,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel35"> Edit <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Movie</a></h3>
+                    <h3 class="modal-title" id="myModalLabel35"> Edit <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Event</a></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -106,15 +106,22 @@
                     @csrf
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="modal-body">
-                         <fieldset class="form-group floating-label-form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" required="true" id="news_title" name="news_title"
-                                   placeholder="Enter News Title">
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="title">Event Name</label>
+                            <input type="text" class="form-control" required="true" id="event_name" name="event_name" placeholder="Enter Event Name">
                         </fieldset>
                         <fieldset class="form-group floating-label-form-group">
-                            <label for="description">Details</label>
-                            <textarea class="form-control" required="true" id="news_details" name="news_details" placeholder="Enter News Details"></textarea>
+                            <label for="description">Event Details</label>
+                            <textarea class="form-control" required="true" id="event_details" name="event_details" placeholder="Enter Event Details"></textarea>
                         </fieldset>
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="title">Event Fees</label>
+                            <input type="text" class="form-control" required="true" id="event_fees" name="event_fees" placeholder="Enter Event Fees">
+                        </fieldset>
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="description">Upload Image</label>
+                            <input type="file" class="form-control" required="true" id="event_images" name="event_images">
+                        </fieldset>                        
                     </div>
                     <div class="modal-footer">
                         <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Close">
@@ -199,11 +206,15 @@
         $(document).on('click', '.edit', function () {
 
             var id = $(this).data("id");
-            var event_title = $(this).data("event-title");
+            var event_name = $(this).data("event-name");
             var event_details = $(this).data("event-details");
+            var event_images = $(this).data("event-images");
+            var event_fees = $(this).data("event-fees");
 
-            $('#editform #event_title').val(event_title);
+            $('#editform #event_name').val(event_name);
             $('#editform #event_details').val(event_details);
+            $('#editform #event_fees').val(event_fees);
+            $('#editform #event_images').attr('src',event_images);
             $('#editform').attr('action', '/event/' + id);
             $('#editmodel').modal('show');
         });

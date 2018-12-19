@@ -94,7 +94,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="mobile-menu nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li class="active"><a href="/upcoming_events">Upcoming Events</a></li>
+                <li class="active"><a href="event/frontend">Upcoming Events</a></li>
                 <li class="active"><a href="/news_updates">News Updates</a></li>
 
 

@@ -58,7 +58,7 @@
 
 
 <!-- Course Search Start -->
-<div class="course-search">
+<!-- <div class="course-search">
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
@@ -81,11 +81,11 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- Course Search End --> 
 
 
-<section class="content-wrapper course-grid">
+<!-- <section class="content-wrapper course-grid">
   <div class="container">
     <div class="title">
       <h2>Searching Results</h2>
@@ -266,14 +266,14 @@
       </ul>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
 
 
 <!-- Important Facts Start -->
-<section class="important-facts">
+<!-- <section class="important-facts">
   <div class="container">
     <div class="title">
       <h2>Some Important Facts About College</h2>
@@ -309,7 +309,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- Important Facts  End --> 
 <!-- About Us Start -->
 <section class="about-us">

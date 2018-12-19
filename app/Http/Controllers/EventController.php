@@ -92,8 +92,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::findOrFail($id)->update($request->all());
-        return response('success');   
+        Event::findOrFail($id)->delete();
+        return response('success');
     }
 
 
@@ -102,12 +102,17 @@ class EventController extends Controller
         $event = Event::all();
         return DataTables::of($event)
             ->addColumn('edit',function ($event){
-                return '<button type="button" class="edit btn btn-sm btn-primary" data-event-title="'.$event->event_name.'" data-event-images="'.$event->event_images.'"  data-event-details="'.$event->event_details.'" data-id="'.$event->id.'">Edit</button>';
+                return '<button type="button" class="edit btn btn-sm btn-primary" data-event-name="'.$event->event_name.'" data-event-images="'.$event->event_images.'"  data-event-details="'.$event->event_details.'" data-event-fees="'.$event->event_fees.'" data-id="'.$event->id.'">Edit</button>';
             })
             ->addColumn('delete',function ($event){
                 return '<button type="button" class="delete btn btn-sm btn-danger" data-delete-id="'.$event->id.'" data-token="'.csrf_token().'" >Delete</button>';
             })
             ->rawColumns(['edit','delete'])
             ->make(true);
+    }
+
+    public function frontend_view(){
+        $event = Event::all();
+        return $event;
     }
 }

@@ -10,6 +10,7 @@ class Frontend_controller extends Controller
 
     }
     public function index(){
+        
     	return view('frontend.pages.index');
     }
     public function contact_us(){

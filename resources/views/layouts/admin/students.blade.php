@@ -185,8 +185,8 @@
                     '_token' : '{{csrf_token()}}',
                 },
                 success:function(response){
-                	alert(response);
-                    //location.reload();
+                	//alert(response);
+                    mytable.draw();
                 },
                 error:function(xhr,status){
                     console.log(xhr.responseText);

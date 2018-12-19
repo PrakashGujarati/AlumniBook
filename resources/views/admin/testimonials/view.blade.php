@@ -1,6 +1,6 @@
 @extends('layouts.admin_template')
 
-@section('title',"View News")
+@section('title',"View Testimonials")
 
 @section('head')
     <!-- BEGIN Page Level CSS-->
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">News</h4>
+                        <h4 class="card-title">Testimonials</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
                             <button type="button" class="btn btn-outline-warning block btn-lg" data-toggle="modal"
@@ -34,12 +34,10 @@
                             <table class="table table-striped table-bordered dynamic-table">
                                 <thead>
                                 <tr>
-                                    <th>Admin</th>
-                                    <th>Title</th>
-                                    <th>Details</th>
-                                    <th>Image</th>
-                                    <th width="50px;">Edit</th>
-                                    <th width="50px;">Delete</th>
+                                    <th>Alumni</th>
+                                    <th>Testimonials</th>
+                                    <th>Status</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -57,28 +55,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel35"> Add <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">News</a></h3>
+                    <h3 class="modal-title" id="myModalLabel35"> Add <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Testimonials</a></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/news" method="post" id="addform" enctype="multipart/form-data">
+                <form action="/testimonials" method="post" id="addform">
                     @csrf
                     <div class="modal-body">
                         <fieldset class="form-group floating-label-form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" required="true" id="news_title" name="news_title"
-                                   placeholder="Enter News Title">
+                            <label for="title">Testimonials Content</label>
+                            <input type="text" class="form-control" required="true" id="content" name="content" placeholder="Enter Testimonial Content">
                         </fieldset>
-                        <fieldset class="form-group floating-label-form-group">
-                            <label for="description">Details</label>
-                            <textarea class="form-control" required="true" id="news_details" name="news_details"
-                                      placeholder="Enter News Details"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group floating-label-form-group">
-                            <label for="description">Upload Image</label>
-                            <input type="file" class="form-control" required="true" id="news_image" name="news_image">
-                        </fieldset>                        
                     </div>
                     <div class="modal-footer">
                         <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Close">
@@ -94,27 +82,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel35"> Edit <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">News</a></h3>
+                    <h3 class="modal-title" id="myModalLabel35"> Edit <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2018">Testimonials</a></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="" id="editform" enctype="multipart/form-data">
+                <form method="post" action="" id="editform">
                     @csrf
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="modal-body">
-                         <fieldset class="form-group floating-label-form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" required="true" id="news_title" name="news_title"
-                                   placeholder="Enter News Title">
-                        </fieldset>
                         <fieldset class="form-group floating-label-form-group">
-                            <label for="description">Details</label>
-                            <textarea class="form-control" required="true" id="news_details" name="news_details" placeholder="Enter News Details"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group floating-label-form-group">
-                            <label for="description">Upload Image</label>
-                            <input type="file" class="form-control" required="true" id="news_image" name="news_image">
+                            <label for="title">Testimonials Content</label>
+                            <input type="text" class="form-control" required="true" id="content" name="content" placeholder="Enter Testimonial Content">
                         </fieldset>
                     </div>
                     <div class="modal-footer">
@@ -144,14 +123,15 @@
         var mytable;
 
         /* DELETE Record using AJAX Requres */
-        $(document).on('click', '.delete', function () {
+        $(document).on('click', '.status', function () {
 
-            var id = $(this).data("delete-id");
+            var id = $(this).data("id");
+            var status_id = $(this).data("testimonial-status");
             var token = $(this).data("token");
 
             swal({
                 title: "Are you sure?",
-                text: "It will Delete Perminatly !",
+                text: "It will Change Status !",
                 icon: "warning",
                 buttons: {
                     cancel: {
@@ -162,7 +142,7 @@
                         closeModal: false,
                     },
                     confirm: {
-                        text: "Yes, delete it!",
+                        text: "Yes, Change it!",
                         value: true,
                         visible: true,
                         className: "",
@@ -174,15 +154,16 @@
                     if (isConfirm) {
                         $.ajax(
                             {
-                                url: "/news/" + id,
+                                url: "/testimonials/" + id,
                                 type: 'POST',
                                 data: {
                                     "id": id,
+                                    "status": status_id,
                                     "_method": 'DELETE',
                                     "_token": token
                                 },
                                 success: function (result) {
-                                    swal("Deleted!", "Your Record is deleted.", "success");
+                                    swal("Changed!", "Status Changed Successfully...", "success");
                                     mytable.draw();
                                 },
                                 error: function (request, status, error) {
@@ -200,16 +181,10 @@
         $(document).on('click', '.edit', function () {
 
             var id = $(this).data("id");
-            var news_title = $(this).data("news-title");
-            var news_details = $(this).data("news-details");
-            var src = $(this).data('news-image');
+            var event_title = $(this).data("testimonial-content");
 
-
-            $('#editform #news_title').val(news_title);
-            $('#editform #news_details').val(news_details);
-            //$('#editform #news_image').val(src);
-            $('#editform #news_image').attr('src',src);
-            $('#editform').attr('action', '/news/' + id);
+            $('#editform #content').val(event_title);
+            $('#editform').attr('action', '/testimonials/' + id);
             $('#editmodel').modal('show');
         });
 
@@ -218,14 +193,12 @@
             mytable = $('.dynamic-table').DataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ url('news/getDataTable') }}",
+                "ajax": "{{ url('testimonials/getDataTable') }}",
                 columns: [
-                    {data: "admin_id"},
-                    {data: "news_title"},
-                    {data: "news_details"},
-                    {data: "news_image"},
-                    {data: "edit"},
-                    {data: "delete"}
+                    {data: "alumni_id"},
+                    {data: "content"},
+                    {data: "status"},
+                    {data: "edit"}
                 ]
             });
 
@@ -244,19 +217,12 @@
                     $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
                 },
                 submitHandler: function (form) {
-                    var data2 = new FormData(form);
-                    var src = $("#news_image").attr('src');
-                    var image = new Image(src);
-                    data2.append('news_image',image);
                     $.ajax({
                         type: "POST",
                         url: $(form).attr('action'),
                         method: $(form).attr('method'),
-                        //data: $(form).serialize(),
-                        data: data2,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
+                        data: $(form).serialize(),
+                        success: function (result) {
                             $('#addmodel').modal('hide');
                             swal("Good job!", "Your Record Inserted Successfully", "success");
                             $(form).trigger('reset');
@@ -286,17 +252,11 @@
                     $(element.form).find("span[id=" + element.id + "-error]").removeClass(errorClass);
                 },
                 submitHandler: function (form) {
-                    var data3 = new FormData(form);
-                    var src = $("#editform #news_image").attr('src');
-                    var image = new Image(src);
-                    data3.append('news_image',image);
                     $.ajax({
                         type: "POST",
                         url: $(form).attr('action'),
                         method: $(form).attr('method'),
-                        data: data2,
-                        processData: true,
-                        contentType: true,
+                        data: $(form).serialize(),
                         success: function (data) {
                             $('#editmodel').modal('hide');
                             swal("Good job!", "Your Record Updated Successfully", "success");
