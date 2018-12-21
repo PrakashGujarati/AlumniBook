@@ -120,4 +120,9 @@ class NewsController extends Controller
             ->rawColumns(['edit','delete'])
             ->make(true);
     }
+
+    public function frontend_view(){
+        $newses = News::all();
+        return view('frontend.pages.news_updates',compact('newses'));
+    }
 }

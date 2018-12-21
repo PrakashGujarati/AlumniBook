@@ -25,6 +25,10 @@
     <div class="title">
       <h2>Upcoming Events</h2>
       <span class="title-border"><img src="{{ asset('images/title-img.png') }}" alt="Education Career"/> </span> </div>
+
+
+    @foreach($event as $ev)
+
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
@@ -39,21 +43,23 @@
             </ul>
           </div>
           <div class="caption">
-            <h3><a href="javascript:void(0)">Lorem Ipsum is simply dummy</a></h3>
+            <h3><a href="javascript:void(0)">{{$ev->event_name}}</a></h3>
             <p class="posted"><img src="{{ asset('images/tes-img1.jpg') }}" alt="Education Career"/> By: <span>Marek</span></p>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et </p>
+            <p>{{$ev->event_details}}</p>
             <div class="price-info">
-              <h4> $90 </h4>
-              <ul class="details pull-right">
+              <h4> {{$ev->event_fees}} </h4>
+              <!-- <ul class="details pull-right">
                 <li><i class="fa fa-share-alt" aria-hidden="true"></i> 31</li>
                 <li><i class="fa fa-heart" aria-hidden="true"></i> 52</li>
                 <li><i class="fa fa-comment" aria-hidden="true"></i> 20</li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
+
+      @endforeach
+      <!-- <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
           <div class="course-img"><div class="hover-img"> <img alt="image" src="{{ asset('images/course-img2.jpg') }}">
             <div class="hover-link">
@@ -187,7 +193,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="course-grid-pagination">
       <ul class="pagination">

@@ -113,6 +113,6 @@ class EventController extends Controller
 
     public function frontend_view(){
         $event = Event::all();
-        return $event;
+        return view('frontend.pages.upcoming_events',compact('event'));
     }
 }

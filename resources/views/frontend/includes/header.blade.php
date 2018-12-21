@@ -95,7 +95,7 @@
               <ul class="mobile-menu nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li class="active"><a href="event/frontend">Upcoming Events</a></li>
-                <li class="active"><a href="/news_updates">News Updates</a></li>
+                <li class="active"><a href="news/frontend">News Updates</a></li>
 
 
                 <li class="active"> <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <i class="fa hover-inn fa-angle-down"></i></a>

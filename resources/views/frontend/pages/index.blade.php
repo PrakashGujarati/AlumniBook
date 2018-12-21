@@ -328,6 +328,7 @@
 </section>
 <!-- About Us End --> 
 <!-- Events Start -->
+
 <section class="events-wrapper">
   <div class="container">
     <div class="title">
@@ -341,41 +342,7 @@
           <h4>Learn English in ease</h4>
         </div>
       </div>
-      <div class="item">
-        <div class="events-list">
-          <div class="event-img"><img src="{{ asset('images/events-img2.jpg') }}" alt="Alumni Book"/></div>
-          <p>4.00 pm - 8.00 pm   •   Dhaka Bangladesh</p>
-          <h4>Learn English in ease</h4>
-        </div>
-      </div>
-      <div class="item">
-        <div class="events-list">
-          <div class="event-img"><img src="{{ asset('images/events-img3.jpg') }}" alt="Alumni Book"/></div>
-          <p>4.00 pm - 8.00 pm   •   Dhaka Bangladesh</p>
-          <h4>Learn English in ease</h4>
-        </div>
-      </div>
-      <div class="item">
-        <div class="events-list">
-          <div class="event-img"><img src="{{ asset('images/events-img1.jpg') }}" alt="Alumni Book"/></div>
-          <p>4.00 pm - 8.00 pm   •   Dhaka Bangladesh</p>
-          <h4>Learn English in ease</h4>
-        </div>
-      </div>
-      <div class="item">
-        <div class="events-list">
-          <div class="event-img"><img src="{{ asset('images/events-img2.jpg') }}" alt="Alumni Book"/></div>
-          <p>4.00 pm - 8.00 pm   •   Dhaka Bangladesh</p>
-          <h4>Learn English in ease</h4>
-        </div>
-      </div>
-      <div class="item">
-        <div class="events-list">
-          <div class="event-img"><img src="{{ asset('images/events-img3.jpg') }}" alt="Alumni Book"/></div>
-          <p>4.00 pm - 8.00 pm   •   Dhaka Bangladesh</p>
-          <h4>Learn English in ease</h4>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
@@ -390,16 +357,6 @@
       <div class="row">
         <div class="col-sm-6 col-md-4">
           <div class="news">
-            <div class="news-img"><img src="{{ asset('images/news-img1.jpg') }}" alt="Alumni Book"/></div>
-            <ul>
-              <li class="pull-left"><i class="fa fa-user" aria-hidden="true"></i> Henry H. Garrick</li>
-              <li class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-            </ul>
-            <h3>How to get better at Learning</h3>
-            <a href="javascript:void(0)" class="read-more">Read More</a> </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="news">
             <div class="news-img"><img src="{{ asset('images/news-img2.jpg') }}" alt="Alumni Book"/></div>
             <ul>
               <li class="pull-left"><i class="fa fa-user" aria-hidden="true"></i> Henry H. Garrick</li>
@@ -408,16 +365,7 @@
             <h3>How to get better at Learning</h3>
             <a href="javascript:void(0)" class="read-more">Read More</a> </div>
         </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="news">
-            <div class="news-img"><img src="{{ asset('images/news-img3.jpg') }}" alt="Alumni Book"/></div>
-            <ul>
-              <li class="pull-left"><i class="fa fa-user" aria-hidden="true"></i> Henry H. Garrick</li>
-              <li class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-            </ul>
-            <h3>How to get better at Learning</h3>
-            <a href="javascript:void(0)" class="read-more">Read More</a> </div>
-        </div>
+        
       </div>
     </div>
   </div>

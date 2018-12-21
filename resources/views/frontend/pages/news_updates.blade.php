@@ -25,6 +25,8 @@
     <div class="title">
       <h2>News Updates</h2>
       <span class="title-border"><img src="{{ asset('images/title-img.png') }}" alt="Education Career"/> </span> </div>
+
+     @foreach($newses as $ne)
     <div class="course-list">
       <div class="thumbnail">
         <div class="col-sm-12 col-md-6 col-lg-5 no-padding">
@@ -33,30 +35,32 @@
               <div class="link"> <a href="../education-career/course-details.html"><i class="fa fa-link" aria-hidden="true"></i></a> </div>
             </div>
             </div>
-            <ul class="area-time">
+            <!-- <ul class="area-time">
               <li><i class="fa fa-map-marker" aria-hidden="true"></i> America</li>
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> 1 year</li>
-            </ul>
+            </ul> -->
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-7 no-padding">
           <div class="caption">
-            <h3><a href="javascript:void(0)">Lorem Ipsum is simply dummy</a></h3>
+            <h3><a href="javascript:void(0)">{{$ne->news_title}}</a></h3>
             <p class="posted"><img src="{{ asset('images/tes-img1.jpg') }}" alt="Education Career"/> By: <span>Marek</span></p>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et </p>
-            <div class="price-info">
+            <p>{{$ne->news_details}}</p>
+            <!-- <div class="price-info">
               <h4> $90 </h4>
               <ul class="details pull-right">
                 <li><i class="fa fa-share-alt" aria-hidden="true"></i> 31</li>
                 <li><i class="fa fa-heart" aria-hidden="true"></i> 52</li>
                 <li><i class="fa fa-comment" aria-hidden="true"></i> 20</li>
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
-    </div>
-    <div class="course-list">
+    </div>  
+    @endforeach
+
+    <!-- <div class="course-list">
       <div class="thumbnail">
         <div class="col-sm-12 col-md-6 col-lg-5 no-padding">
           <div class="course-img"><div class="hover-img"> <img alt="image" src="{{ asset('images/course-list-img2.jpg') }}">
@@ -117,7 +121,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="course-grid-pagination">
       <ul class="pagination">
         <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">Prev</span> </a> </li>

@@ -14,8 +14,6 @@ Route::get('/contact_us', 'Frontend_controller@contact_us');
 Route::resource('/register','AlumniController');
 
 
-
-
 Route::get('/admin', 'HomeController@index')->name('home');
 
 
@@ -42,6 +40,7 @@ Route::get('faculties/getDataTable','HallController@getDataTable');
 Route::resource('faculties', 'HallController');
 
 /* For Admin Alumni */
+Route::get('news/frontend','NewsController@frontend_view');
 Route::get('news/getDataTable','NewsController@getDataTable');
 Route::resource('news', 'NewsController');
 
@@ -61,6 +60,5 @@ Route::resource('photos', 'MediaController');*/
 
 Route::group(['middleware'=>'auth:admin'], function() {
     // Admin Alumni
-
 
 });

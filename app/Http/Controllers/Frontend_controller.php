@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
+use App\Event;
+use App\Testimonial;
 use Illuminate\Http\Request;
 
 class Frontend_controller extends Controller
 {
-    public function __construct(){
-
-    }
     public function index(){
-        
-    	return view('frontend.pages.index');
+        $newses = News::all();
+        $events = Event::all();
+        $testimonials = Testimonial::all();
+        return $newses;
+        return view('frontend.pages.index',compact('newses','events','testimonials'));
     }
     public function contact_us(){
     	return view('frontend.pages.contact_us');
